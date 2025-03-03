@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-padded">
+    <div class="container">
+        <h2 class="text-center">Panel de Administración</h2>
+        <p class="text-center">¡Bienvenido, {{ current_user.username }}!</p>
+
+        <div class="admin-dashboard-grid">
+            <div class="admin-card">
+                <h3>Gestionar Cortes</h3>
+                <p>Añade, edita o elimina las fotos de tus trabajos.</p>
+                <a href="{{ url_for('admin_cortes') }}" class="btn">Ir a Cortes</a>
+            </div>
+            <div class="admin-card">
+                <h3>Estadísticas Rápidas</h3>
+                <p>Número total de cortes en la galería: **{{ total_cortes }}**</p>
+                {# Podrías añadir más estadísticas aquí en el futuro #}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

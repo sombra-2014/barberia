@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="hero-section text-white text-center d-flex align-items-center justify-content-center" style="background-image: url('{{ url_for('static', filename='img/barb.png') }}'); background-size: cover; background-position: center; height: 70vh;">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-4">Tu Estilo, Nuestra Pasión</h1>
+        <p class="lead mb-5">Expertos en cortes modernos y afeitados clásicos para el caballero de hoy.</p>
+        <a href="{{ url_for('contacto') }}" class="btn btn-primary btn-lg">Reserva Tu Cita</a>
+        
+        {# BOTÓN DE WHATSAPP AÑADIDO AQUÍ #}
+        <a href="https://wa.me/541164315249?text=Hola!%20Quisiera%20reservar%20una%20cita." class="btn btn-primary btn-lg ms-3" target="_blank">
+            <i class="fab fa-whatsapp me-2"></i> Chatear por WhatsApp
+        </a>
+    </div>
+</header>
+
+<section id="featured-services" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Nuestros Servicios Destacados</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-cut fa-3x text-primary mb-3"></i>
+                <h3 class="h5">Cortes de Cabello</h3>
+                <p>Estilos clásicos y modernos, adaptados a tu personalidad.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-razor fa-3x text-primary mb-3"></i>
+                <h3 class="h5">Afeitado Clásico</h3>
+                <p>Una experiencia de afeitado tradicional con navaja, toallas calientes y productos de calidad.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-beard fa-3x text-primary mb-3"></i>
+                <h3 class="h5">Arreglo de Barba</h3>
+                <p>Diseño, recorte y cuidado profesional para tu barba.</p>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('servicios') }}" class="btn btn-outline-primary btn-lg">Ver Todos los Servicios</a>
+        </div>
+    </div>
+</section>
+
+<section id="recent-cuts" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Últimos Cortes</h2>
+        <div class="row">
+            {% if cortes_recientes %}
+                {% for corte in cortes_recientes %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if corte.imagen_filename %}
+                        <img src="{{ url_for('static', filename='uploads/' + corte.imagen_filename) }}" class="card-img-top" alt="{{ corte.nombre }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='img/default_corte.jpg') }}" class="card-img-top" alt="Corte por defecto" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ corte.nombre }}</h5>
+                            <p class="card-text">{{ corte.descripcion | truncate(80) }}</p>
+                            <a href="{{ url_for('galeria', _anchor='corte-' + corte.id|string) }}" class="btn btn-sm btn-outline-secondary mt-auto">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <div class="col-12 text-center">
+                <p>Aún no hay cortes destacados en la galería. ¡Pronto verás nuestros trabajos!</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('galeria') }}" class="btn btn-outline-primary btn-lg">Ver Toda la Galería</a>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Lo Que Dicen Nuestros Clientes</h2>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"¡Excelente servicio y atención! Siempre salgo contento con mi corte."</p>
+                        <footer class="blockquote-footer">Juan P.</footer>
+                    </blockquote>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"Los mejores barberos de la ciudad, un ambiente increíble."</p>
+                        <footer class="blockquote-footer">Carlos R.</footer>
+                    </blockquote>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"Aunque es una barbería, su atención es de primera. ¡Muy recomendado!"</p>
+                        <footer class="blockquote-footer">Maria S.</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('testimonios') }}" class="btn btn-outline-primary btn-lg">Leer Más Testimonios</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

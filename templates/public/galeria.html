@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Nuestra Galería de Cortes</h1>
+    <p class="page-description">Explora algunos de nuestros trabajos y encuentra inspiración para tu próximo estilo.</p>
+
+    <div class="gallery-grid">
+        {% if cortes %}
+            {% for corte in cortes %}
+            <div class="gallery-item" id="corte-{{ corte.id }}">
+                <img src="{{ url_for('static', filename='uploads/' + corte.imagen_filename) }}" alt="Corte de cabello: {{ corte.nombre }}">
+                <h3>{{ corte.nombre }}</h3>
+                <p>{{ corte.descripcion }}</p>
+
+                <div class="comments-section">
+                    <h4>Comentarios:</h4>
+                    {% if corte.comentarios %}
+                        <ul class="comment-list">
+                            {% for comentario in corte.comentarios %}
+                            <li>
+                                <strong>Anónimo</strong>
+                                <span class="comment-date">({{ comentario.fecha_creacion.strftime('%d/%m/%Y %H:%M') }})</span>
+                                <p>{{ comentario.texto }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Sé el primero en comentar este corte.</p>
+                    {% endif %}
+
+                    <form action="{{ url_for('comentar_corte', corte_id=corte.id) }}" method="POST" class="comment-form">
+                        <textarea name="comentario_texto" placeholder="Escribe tu comentario aquí..." required></textarea>
+                        <button type="submit">Enviar Comentario</button>
+                    </form>
+                </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aún no hay cortes en la galería. ¡Sube algunos desde el panel de administración!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    /* Estilos específicos para esta página */
+    .page-title {
+        text-align: center;
+        font-size: 2.8em;
+        color: #333;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+    .page-description {
+        text-align: center;
+        font-size: 1.1em;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    /* Estilos para el grid de la galería */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .gallery-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+
+    .gallery-item h3 {
+        font-size: 1.5em;
+        color: #333;
+        margin: 15px 10px 5px;
+    }
+
+    .gallery-item p {
+        font-size: 0.95em;
+        color: #666;
+        padding: 0 15px 10px;
+        flex-grow: 1;
+    }
+
+    /* Estilos para la sección de comentarios */
+    .comments-section {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding: 15px;
+        background-color: #fcfcfc;
+    }
+    .comments-section h4 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #555;
+    }
+    .comment-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 15px;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    .comment-list li {
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+    }
+    .comment-list li:last-child {
+        border-bottom: none;
+    }
+    .comment-list li strong {
+        color: #333;
+    }
+    .comment-list li .comment-date {
+        font-size: 0.8em;
+        color: #888;
+        margin-left: 5px;
+    }
+    .comment-list li p {
+        margin-top: 5px;
+        margin-bottom: 0;
+        color: #444;
+    }
+    .comment-form textarea {
+        width: calc(100% - 16px);
+        min-height: 60px;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .comment-form button {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9em;
+        width: 100%;
+    }
+    .comment-form button:hover {
+        background-color: #0056b3;
+    }
+</style>

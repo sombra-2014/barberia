@@ -1,0 +1,572 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto+Slab:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Estilos globales y reseteo básico */
+body {
+    font-family: 'Open Sans', sans-serif; /* Fuente más legible para el cuerpo */
+    color: #e0e0e0; /* Color de texto claro para fondos oscuros */
+    background-color: #1a1a1a; /* Fondo oscuro base */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    /* Opcional: Si tienes una textura de fondo sutil (ej. madera oscura o ladrillo) */
+    /* background-image: url('../img/dark_texture.png'); */
+    /* background-repeat: repeat; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif; /* Fuente elegante para títulos */
+    color: #f0f0f0; /* Color claro para títulos */
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #d4af37; /* Dorado/Bronce para enlaces */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffde71; /* Un dorado más brillante al pasar el ratón */
+}
+
+/* --- Navegación (Navbar) - ¡MÁS FINA Y COMPACTA! --- */
+.navbar {
+    background-color: #0d0d0d !important; /* Negro muy oscuro */
+    border-bottom: 1px solid #222; /* Borde inferior más sutil */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Sombra más ligera */
+    padding: 0.5rem 1rem; /* REDUCIDO Padding vertical para hacer la barra más fina */
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el brand y el menú */
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6em; /* Fuente del brand ligeramente más pequeña */
+    color: #d4af37 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 1.5rem; /* Separación del brand del menú ligeramente reducida */
+}
+
+/* Ocultar el toggler por defecto (solo se mostrará en móviles) */
+.navbar-toggler {
+    display: none;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28212, 175, 55, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* El contenedor de los enlaces del menú */
+.navbar-collapse {
+    display: flex !important;
+    flex-grow: 1; /* Permite que ocupe el espacio disponible */
+    /* justify-content: space-around; /* Mantiene la distribución uniforme */
+    flex-basis: auto;
+}
+
+/* Los ítems individuales de la navegación */
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: center; /* CAMBIO: Centra los elementos */
+    gap: 15px; /* NUEVO: Espacio entre los elementos */
+    align-items: center; /* Centra verticalmente los enlaces */
+    margin-left: 0 !important;
+}
+
+.navbar-nav .nav-item {
+    margin: 0; /* Asegura que no haya márgenes no deseados */
+    flex-grow: 0; /* No permite que cada ítem "crezca" tanto */
+    text-align: center;
+    /* padding: 0 5px; /* Eliminado, ya se usa gap */
+}
+
+.navbar-nav .nav-link {
+    color: #f0f0f0 !important;
+    font-weight: 600;
+    padding: 4px 8px; /* REDUCIDO: Padding más pequeño para un look compacto */
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    font-size: 0.9em; /* Fuente ligeramente más pequeña */
+    display: block;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #2a2a2a;
+    color: #ffde71 !important;
+    transform: translateY(-1px);
+}
+
+/* Estilos para el dropdown de Admin */
+.navbar-nav .dropdown-menu {
+    background-color: #202020;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    min-width: 8rem; /* Ancho del dropdown ligeramente más pequeño */
+    position: absolute;
+    z-index: 1020;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .dropdown-item {
+    color: #e0e0e0;
+    padding: 7px 12px; /* Padding reducido */
+    transition: background-color 0.15s ease, color 0.15s ease;
+    font-size: 0.85em; /* Fuente más pequeña */
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #333;
+    color: #d4af37;
+}
+
+.navbar-nav .dropdown-divider {
+    border-top: 1px solid #4a4a4a;
+}
+
+
+/* --- Sección Hero (Página de Inicio) --- */
+.hero-section {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 80vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+}
+
+.hero-section h1 {
+    font-size: 5em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.hero-section p.lead {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    color: #f0f0f0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section .btn-light {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    color: #1a1a1a;
+    font-weight: bold;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-section .btn-light:hover {
+    background-color: #ffde71;
+    border-color: #ffde71;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* --- Secciones de Contenido General --- */
+.container.my-5 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+h2 {
+    font-size: 3em;
+    color: #d4af37;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3 {
+    font-size: 2em;
+    color: #f0f0f0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #c0c0c0;
+}
+
+/* --- Icon Features (Home Page) --- */
+.icon-feature {
+    color: #d4af37;
+    margin-bottom: 25px;
+}
+.icon-feature i {
+    font-size: 4.5em;
+    transition: transform 0.3s ease;
+}
+.icon-feature i:hover {
+    transform: scale(1.1);
+}
+
+/* --- Botones Generales de la Página --- */
+.btn-primary {
+    background-color: #a0522d;
+    border-color: #a0522d;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #8b4513;
+    border-color: #8b4513;
+}
+
+.btn-secondary {
+    background-color: #4a4a4a;
+    border-color: #4a4a4a;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+/* --- Galería --- */
+.page-title {
+    text-align: center;
+    font-size: 3.5em;
+    color: #d4af37;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.page-description {
+    text-align: center;
+    font-size: 1.2em;
+    color: #c0c0c0;
+    margin-bottom: 50px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 30px 0;
+}
+
+.gallery-item {
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    background-color: #2a2a2a;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #444;
+}
+
+.gallery-item h3 {
+    font-size: 1.8em;
+    color: #d4af37;
+    margin: 20px 15px 10px;
+}
+
+.gallery-item p {
+    font-size: 1em;
+    color: #c0c0c0;
+    padding: 0 20px 15px;
+}
+
+/* --- Comentarios --- */
+.comments-section {
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding: 25px;
+    background-color: #252525;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.comments-section h4 {
+    font-size: 1.5em;
+    color: #d4af37;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.comment-list li {
+    background-color: #3a3a3a;
+    border-bottom: 1px solid #4a4a4a;
+    padding: 12px;
+}
+.comment-list li:last-child {
+    border-bottom: none;
+}
+.comment-list li:nth-child(even) {
+    background-color: #404040;
+}
+.comment-list li strong {
+    color: #f0f0f0;
+}
+.comment-list li .comment-date {
+    font-size: 0.85em;
+    color: #a0a0a0;
+    margin-left: 10px;
+}
+.comment-list li p {
+    margin-top: 8px;
+    margin-bottom: 0;
+    color: #d0d0d0;
+}
+.comment-form textarea {
+    width: 100%;
+    background-color: #4a4a4a;
+    color: #f0f0f0;
+    border: 1px solid #666;
+    border-radius: 5px;
+    resize: vertical;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.comment-form textarea::placeholder {
+    color: #a0a0a0;
+}
+.comment-form button {
+    background-color: #d4af37;
+    color: #1a1a1a;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.comment-form button:hover {
+    background-color: #ffde71;
+}
+
+/* --- Alertas de Flash (mensajes de éxito/error) --- */
+.alert {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 1.1em;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+}
+
+.alert-danger, .alert-error {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+.alert-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border-color: #17a2b8;
+}
+
+.alert .btn-close {
+    color: #fff;
+    opacity: 0.7;
+    filter: invert(1);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #0d0d0d !important;
+    color: #c0c0c0;
+    border-top: 1px solid #333;
+    font-size: 0.95em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    padding: 20px 0;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: #c0c0c0;
+}
+
+/* --- Media Queries para Responsividad (Asegurando Comportamiento de Navbar) --- */
+
+/* Por encima de 992px (pantallas grandes - 'lg'), la navbar DEBE ser horizontal */
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none !important;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        flex-direction: row !important;
+        width: 100%;
+        justify-content: center; /* CAMBIO: Ahora los elementos están centrados */
+        gap: 15px; /* NUEVO: Espaciado controlado con gap */
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 0; /* Asegura que no haya márgenes no deseados */
+        flex-grow: 0; /* No permite que crezcan, así los mantiene más cerca */
+        flex-shrink: 0; /* Evita que se encojan si hay poco espacio, manteniendo el tamaño */
+        text-align: center;
+        /* padding: 0 5px; /* Eliminado, ya se usa gap */
+    }
+
+    /* Asegurar que los dropdowns se vean bien en desktop */
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+        display: none;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 8rem; /* Tamaño del dropdown ajustado */
+    }
+
+    .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+/* Para pantallas por debajo de 992px (móviles y tablets), la navbar debe colapsar */
+@media (max-width: 991.98px) {
+    .navbar-toggler {
+        display: block !important;
+    }
+
+    .navbar-collapse {
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        background-color: #0d0d0d;
+        border-top: 1px solid #333;
+        padding: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .navbar-collapse.show {
+        display: block;
+    }
+
+    .navbar-nav {
+        flex-direction: column !important;
+        align-items: center;
+        margin: 0 !important;
+        gap: 0; /* No necesitas gap en columna si quieres que estén pegados verticalmente */
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 0; /* Asegura que no haya márgenes no deseados */
+    }
+
+    .navbar-nav .nav-link {
+        padding: 12px 20px; /* Ajustado para móviles, para que no sean demasiado pequeños */
+        display: block;
+        width: 100%;
+    }
+
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        width: 100%;
+        background-color: #1a1a1a;
+        border: none;
+    }
+
+    .navbar-nav .dropdown-item {
+        padding-left: 40px;
+    }
+}
+
+/* Otros ajustes responsivos generales */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3.5em;
+    }
+    .hero-section p.lead {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .hero-section p.lead {
+        font-size: 1em;
+    }
+}

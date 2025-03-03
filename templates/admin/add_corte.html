@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-padded">
+    <div class="container">
+        <h2 class="text-center">Añadir Nuevo Corte</h2>
+        <form action="{{ url_for('admin_add_corte') }}" method="POST" enctype="multipart/form-data" class="contact-form">
+            <div class="form-group">
+                <label for="nombre">Nombre del Corte:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen del Corte:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg, image/gif" required>
+                <small>Formatos permitidos: PNG, JPG, JPEG, GIF.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir Corte</button>
+            <a href="{{ url_for('admin_cortes') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="servicios" class="section-padded bg-light">
+        <div class="container text-center">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                {% for servicio in servicios %}
+                    <div class="service-item">
+                        <i class="fas fa-cut service-icon"></i> {# Puedes cambiar el icono #}
+                        <h3>{{ servicio.nombre }}</h3>
+                        <p>{{ servicio.descripcion }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

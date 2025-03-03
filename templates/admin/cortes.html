@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Administrar Cortes</h1>
+    <a href="{{ url_for('admin_add_corte') }}" class="btn btn-primary mb-3">Añadir Nuevo Corte</a>
+
+    {% if cortes %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha de Subida</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for corte in cortes %}
+                <tr>
+                    <th scope="row">{{ corte.id }}</th>
+                    <td>
+                        {% if corte.imagen_filename %}
+                            <img src="{{ url_for('static', filename='uploads/' + corte.imagen_filename) }}" 
+                                 alt="{{ corte.nombre }}" 
+                                 class="img-fluid" 
+                                 style="max-height: 100px; width: auto; object-fit: cover; border-radius: 5px;">
+                        {% else %}
+                            No image
+                        {% endif %}
+                    </td>
+                    <td>{{ corte.nombre }}</td>
+                    <td>{{ corte.descripcion | truncate(100) }}</td> {# Trunca la descripción para que no sea muy larga en la tabla #}
+                    <td>{{ corte.fecha_subida.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>
+                        <a href="{{ url_for('admin_edit_corte', corte_id=corte.id) }}" class="btn btn-sm btn-warning mb-1">Editar</a>
+                        <form action="{{ url_for('admin_delete_corte', corte_id=corte.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este corte? Esta acción no se puede deshacer.');">
+                            <button type="submit" class="btn btn-sm btn-danger mb-1">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No hay cortes de cabello registrados aún. ¡Añade el primero!</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="testimonios" class="section-padded bg-light">
+        <div class="container text-center">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-slider">
+                {% for testimonio in testimonios %}
+                    <div class="testimonial-item">
+                        <p class="quote">"{{ testimonio.texto }}"</p>
+                        <p class="author">- {{ testimonio.nombre }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            </div>
+    </section>
+{% endblock %}

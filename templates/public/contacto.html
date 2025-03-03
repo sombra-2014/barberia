@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="contacto" class="section-padded">
+        <div class="container">
+            <h2 class="text-center">Contáctanos</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Tu Dirección, Tu Ciudad, Tu País</p>
+                <p><i class="fas fa-phone-alt"></i> +XX XXX XXXX XXXX</p>
+                <p><i class="fas fa-envelope"></i> info@tudominio.com</p>
+            </div>
+            <hr>
+            <h3 class="text-center">Envíanos un Mensaje</h3>
+            <form action="{{ url_for('contacto') }}" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
