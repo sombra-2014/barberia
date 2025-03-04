@@ -55,43 +55,31 @@ a:hover {
     margin-right: 1.5rem; /* Separación del brand del menú ligeramente reducida */
 }
 
-/* Ocultar el toggler por defecto (solo se mostrará en móviles) */
-.navbar-toggler {
-    display: none;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28212, 175, 55, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
-
 /* El contenedor de los enlaces del menú */
 .navbar-collapse {
-    display: flex !important;
-    flex-grow: 1; /* Permite que ocupe el espacio disponible */
-    /* justify-content: space-around; /* Mantiene la distribución uniforme */
+    /* Por defecto, en móvil, Bootstrap lo ocultará */
+    flex-grow: 1;
     flex-basis: auto;
 }
 
 /* Los ítems individuales de la navegación */
 .navbar-nav {
-    display: flex;
-    flex-direction: row;
+    display: flex; /* Asegura el display flex */
+    flex-direction: row; /* Por defecto en desktop: fila */
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
-    justify-content: center; /* CAMBIO: Centra los elementos */
-    gap: 15px; /* NUEVO: Espacio entre los elementos */
-    align-items: center; /* Centra verticalmente los enlaces */
+    justify-content: center; /* Centra los elementos en desktop */
+    gap: 15px; /* Espacio entre los elementos en desktop */
+    align-items: center;
     margin-left: 0 !important;
 }
 
 .navbar-nav .nav-item {
-    margin: 0; /* Asegura que no haya márgenes no deseados */
-    flex-grow: 0; /* No permite que cada ítem "crezca" tanto */
+    margin: 0;
+    flex-grow: 0;
     text-align: center;
-    /* padding: 0 5px; /* Eliminado, ya se usa gap */
 }
 
 .navbar-nav .nav-link {
@@ -116,7 +104,7 @@ a:hover {
     border: 1px solid #3a3a3a;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-    min-width: 8rem; /* Ancho del dropdown ligeramente más pequeño */
+    min-width: 8rem;
     position: absolute;
     z-index: 1020;
     left: 50%;
@@ -125,9 +113,9 @@ a:hover {
 
 .navbar-nav .dropdown-item {
     color: #e0e0e0;
-    padding: 7px 12px; /* Padding reducido */
+    padding: 7px 12px;
     transition: background-color 0.15s ease, color 0.15s ease;
-    font-size: 0.85em; /* Fuente más pequeña */
+    font-size: 0.85em;
 }
 
 .navbar-nav .dropdown-item:hover {
@@ -145,7 +133,7 @@ a:hover {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height: 80vh;
+    height: 80vh; /* Ajustado para que el hero no sea excesivamente alto en móvil */
     position: relative;
     z-index: 1;
     display: flex;
@@ -153,6 +141,8 @@ a:hover {
     justify-content: center;
     text-align: center;
     padding: 20px;
+    /* Ajuste en el hero para que los botones no se superpongan en el borde */
+    padding-bottom: 80px; /* Más espacio para los botones */
 }
 
 .hero-section::before {
@@ -182,24 +172,26 @@ a:hover {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-.hero-section .btn-light {
-    background-color: #d4af37;
-    border-color: #d4af37;
-    color: #1a1a1a;
-    font-weight: bold;
-    padding: 12px 30px;
-    font-size: 1.2em;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+/* Ajuste general para botones en el hero section */
+.hero-section .btn {
+    margin-top: 15px; /* Espacio entre los botones */
+    display: block; /* Para que cada botón ocupe su propia línea en móvil */
+    width: fit-content; /* Ajusta el ancho al contenido */
+    margin-left: auto; /* Centra los botones en móvil */
+    margin-right: auto; /* Centra los botones en móvil */
 }
 
-.hero-section .btn-light:hover {
-    background-color: #ffde71;
-    border-color: #ffde71;
-    color: #000;
-    transform: translateY(-2px);
+/* Especifico para el botón de WhatsApp si lo necesitas */
+.hero-section .btn-whatsapp {
+    background-color: #25d366; /* Color de WhatsApp */
+    border-color: #25d366;
+    color: #fff;
 }
+.hero-section .btn-whatsapp:hover {
+    background-color: #128c7e;
+    border-color: #128c7e;
+}
+
 
 /* --- Secciones de Contenido General --- */
 .container.my-5 {
@@ -288,8 +280,8 @@ p {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min-width reducido para móviles */
+    gap: 30px; /* Reducido para móvil */
     padding: 30px 0;
 }
 
@@ -300,6 +292,8 @@ p {
     background-color: #2a2a2a;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    display: flex; /* Para que el contenido interno se adapte mejor */
+    flex-direction: column; /* Contenido en columna */
 }
 
 .gallery-item:hover {
@@ -309,44 +303,45 @@ p {
 
 .gallery-item img {
     width: 100%;
-    height: 280px;
+    height: 250px; /* Altura ligeramente reducida */
     object-fit: cover;
     display: block;
     border-bottom: 1px solid #444;
 }
 
 .gallery-item h3 {
-    font-size: 1.8em;
+    font-size: 1.6em; /* Reducido para móvil */
     color: #d4af37;
-    margin: 20px 15px 10px;
+    margin: 15px 15px 8px; /* Ajuste de margen */
 }
 
 .gallery-item p {
-    font-size: 1em;
+    font-size: 0.95em; /* Reducido para móvil */
     color: #c0c0c0;
-    padding: 0 20px 15px;
+    padding: 0 20px 10px; /* Ajuste de padding */
+    flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible */
 }
 
 /* --- Comentarios --- */
 .comments-section {
-    margin-top: 30px;
+    margin-top: 20px; /* Reducido para móvil */
     border-top: 1px solid #444;
-    padding: 25px;
+    padding: 15px; /* Reducido para móvil */
     background-color: #252525;
     border-radius: 8px;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .comments-section h4 {
-    font-size: 1.5em;
+    font-size: 1.3em; /* Reducido para móvil */
     color: #d4af37;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reducido para móvil */
     text-align: center;
 }
 .comment-list {
     list-style: none;
     padding: 0;
     margin-bottom: 15px;
-    max-height: 250px;
+    max-height: 200px; /* Reducido para móvil */
     overflow-y: auto;
     border: 1px solid #444;
     border-radius: 5px;
@@ -356,7 +351,7 @@ p {
 .comment-list li {
     background-color: #3a3a3a;
     border-bottom: 1px solid #4a4a4a;
-    padding: 12px;
+    padding: 10px; /* Reducido para móvil */
 }
 .comment-list li:last-child {
     border-bottom: none;
@@ -368,12 +363,12 @@ p {
     color: #f0f0f0;
 }
 .comment-list li .comment-date {
-    font-size: 0.85em;
+    font-size: 0.8em; /* Reducido para móvil */
     color: #a0a0a0;
-    margin-left: 10px;
+    margin-left: 5px; /* Reducido para móvil */
 }
 .comment-list li p {
-    margin-top: 8px;
+    margin-top: 5px; /* Reducido para móvil */
     margin-bottom: 0;
     color: #d0d0d0;
 }
@@ -384,8 +379,9 @@ p {
     border: 1px solid #666;
     border-radius: 5px;
     resize: vertical;
-    padding: 10px;
+    padding: 8px; /* Reducido para móvil */
     box-sizing: border-box;
+    min-height: 60px; /* Altura mínima para el textarea */
 }
 .comment-form textarea::placeholder {
     color: #a0a0a0;
@@ -393,7 +389,7 @@ p {
 .comment-form button {
     background-color: #d4af37;
     color: #1a1a1a;
-    padding: 10px 20px;
+    padding: 8px 15px; /* Reducido para móvil */
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
@@ -410,7 +406,7 @@ p {
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 15px;
-    font-size: 1.1em;
+    font-size: 1em; /* Ajustado para móvil */
 }
 
 .alert-success {
@@ -452,16 +448,16 @@ footer p {
     color: #c0c0c0;
 }
 
-/* --- Media Queries para Responsividad (Asegurando Comportamiento de Navbar) --- */
+/* --- Media Queries para Responsividad --- */
 
-/* Por encima de 992px (pantallas grandes - 'lg'), la navbar DEBE ser horizontal */
+/* Por encima de 992px (pantallas grandes - 'lg') */
 @media (min-width: 992px) {
     .navbar-toggler {
-        display: none !important;
+        display: none !important; /* Oculta el toggler en desktop */
     }
 
     .navbar-collapse {
-        display: flex !important;
+        display: flex !important; /* Muestra el menú en desktop */
         flex-direction: row !important;
         width: 100%;
     }
@@ -469,45 +465,44 @@ footer p {
     .navbar-nav {
         flex-direction: row !important;
         width: 100%;
-        justify-content: center; /* CAMBIO: Ahora los elementos están centrados */
-        gap: 15px; /* NUEVO: Espaciado controlado con gap */
+        justify-content: center;
+        gap: 15px;
         align-items: center;
         margin-left: 0 !important;
     }
 
     .navbar-nav .nav-item {
-        margin: 0; /* Asegura que no haya márgenes no deseados */
-        flex-grow: 0; /* No permite que crezcan, así los mantiene más cerca */
-        flex-shrink: 0; /* Evita que se encojan si hay poco espacio, manteniendo el tamaño */
+        margin: 0;
+        flex-grow: 0;
+        flex-shrink: 0;
         text-align: center;
-        /* padding: 0 5px; /* Eliminado, ya se usa gap */
     }
 
     /* Asegurar que los dropdowns se vean bien en desktop */
     .navbar-nav .dropdown-menu {
         position: absolute;
-        display: none;
+        display: none; /* Oculto por defecto, visible en hover */
         left: 50%;
         transform: translateX(-50%);
-        min-width: 8rem; /* Tamaño del dropdown ajustado */
+        min-width: 8rem;
     }
 
     .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
+        display: block; /* Muestra el dropdown en hover */
     }
 }
 
-/* Para pantallas por debajo de 992px (móviles y tablets), la navbar debe colapsar */
+/* Para pantallas por debajo de 992px (móviles y tablets) */
 @media (max-width: 991.98px) {
     .navbar-toggler {
-        display: block !important;
+        display: block !important; /* Muestra el toggler en móvil */
     }
 
     .navbar-collapse {
-        display: none;
-        position: absolute;
+        display: none; /* Oculto por defecto en móvil */
+        position: absolute; /* Posiciona el menú colapsado */
         width: 100%;
-        top: 100%;
+        top: 100%; /* Justo debajo de la navbar */
         left: 0;
         background-color: #0d0d0d;
         border-top: 1px solid #333;
@@ -517,56 +512,255 @@ footer p {
     }
 
     .navbar-collapse.show {
-        display: block;
+        display: block; /* Muestra el menú cuando tiene la clase 'show' de Bootstrap */
     }
 
     .navbar-nav {
-        flex-direction: column !important;
+        flex-direction: column !important; /* Apila los elementos en columna */
         align-items: center;
         margin: 0 !important;
-        gap: 0; /* No necesitas gap en columna si quieres que estén pegados verticalmente */
+        gap: 0; /* Sin espacio entre ítems apilados */
     }
 
     .navbar-nav .nav-item {
-        width: 100%;
+        width: 100%; /* Cada ítem ocupa todo el ancho disponible */
         text-align: center;
-        margin: 0; /* Asegura que no haya márgenes no deseados */
+        margin: 0;
     }
 
     .navbar-nav .nav-link {
-        padding: 12px 20px; /* Ajustado para móviles, para que no sean demasiado pequeños */
+        padding: 12px 20px; /* Padding más generoso para táctil */
         display: block;
         width: 100%;
     }
 
     .navbar-nav .dropdown-menu {
-        position: static;
+        position: static; /* No flotante, se comporta como parte del flujo */
         float: none;
         width: 100%;
         background-color: #1a1a1a;
         border: none;
+        box-shadow: none; /* Sin sombra para el dropdown en móvil */
+        padding: 0; /* Reinicia el padding */
     }
 
     .navbar-nav .dropdown-item {
-        padding-left: 40px;
+        padding-left: 40px; /* Indentación para ítems de dropdown en móvil */
     }
 }
 
-/* Otros ajustes responsivos generales */
+/* Ajustes adicionales para pantallas más pequeñas (teléfonos) */
 @media (max-width: 768px) {
     .hero-section h1 {
-        font-size: 3.5em;
+        font-size: 3em; /* Tamaño de fuente más pequeño para h1 en móvil */
     }
     .hero-section p.lead {
-        font-size: 1.2em;
+        font-size: 1.1em; /* Tamaño de fuente más pequeño para p.lead en móvil */
+    }
+    .gallery-grid {
+        gap: 20px; /* Espaciado reducido para imágenes en móvil */
+    }
+    .gallery-item img {
+        height: 200px; /* Altura de imagen ligeramente más pequeña */
     }
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        height: 60vh; /* Hero section menos alto en móviles muy pequeños */
+    }
     .hero-section h1 {
-        font-size: 2.5em;
+        font-size: 2.2em;
+        letter-spacing: 1px;
     }
     .hero-section p.lead {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+    .hero-section .btn {
+        padding: 10px 20px; /* Botones ligeramente más pequeños */
         font-size: 1em;
     }
+    h2 {
+        font-size: 2.2em; /* Títulos de sección más pequeños */
+    }
+    .page-title {
+        font-size: 2.8em;
+    }
+    .page-description {
+        font-size: 1em;
+    }
+}
+
+/* Estilos para el formulario de contacto */
+.contact-form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #f0f0f0;
+    font-weight: 600;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="password"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    background-color: #333;
+    color: #e0e0e0;
+    font-size: 1em;
+    box-sizing: border-box; /* Importante para que el padding no desborde el ancho */
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="password"]:focus,
+.contact-form textarea:focus {
+    border-color: #d4af37;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.contact-form .btn-primary,
+.contact-form .btn-secondary {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+/* Estilos para el panel de administración */
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.admin-card {
+    background-color: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.admin-card h3 {
+    color: #d4af37;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.admin-card p {
+    color: #c0c0c0;
+    margin-bottom: 25px;
+    font-size: 1em;
+}
+
+.admin-card .btn {
+    background-color: #a0522d;
+    border-color: #a0522d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.admin-card .btn:hover {
+    background-color: #8b4513;
+    border-color: #8b4513;
+}
+
+/* Estilos para la tabla de administración de cortes */
+.table {
+    color: #e0e0e0; /* Color de texto general para la tabla */
+    background-color: #2a2a2a; /* Fondo de la tabla */
+    border-radius: 8px;
+    overflow: hidden; /* Asegura que los bordes redondeados se apliquen bien */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.table thead {
+    background-color: #1a1a1a; /* Fondo para el encabezado de la tabla */
+    color: #d4af37; /* Color de texto para el encabezado */
+}
+
+.table th, .table td {
+    border-color: #4a4a4a; /* Color de los bordes de la celda */
+    padding: 12px 15px;
+    vertical-align: middle; /* Alinea el contenido verticalmente en el centro */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #333; /* Color para filas impares */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #444; /* Color al pasar el ratón por la fila */
+}
+
+.table .img-fluid {
+    max-width: 100px; /* Tamaño máximo para las miniaturas en la tabla */
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.table .btn-sm {
+    padding: 5px 10px;
+    font-size: 0.85em;
+    margin-right: 5px;
+}
+.table .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #333;
+}
+.table .btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+.table .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+.table .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+/* Asegurar que el contenido del body tenga un padding superior para no ser cubierto por la navbar fija */
+body {
+    padding-top: 56px; /* Altura de la navbar (aproximadamente 56px con el padding reducido) */
 }
